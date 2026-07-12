@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+require __DIR__ . '/vendor/autoload.php';
+
+use Novalites\Console\Console;
+
+define("BASE_PATH", __DIR__);
+$console = new Console();
+$console->run($argv);
