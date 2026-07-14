@@ -1,14 +1,14 @@
 <?php
 
-use Illuminate\Database\Capsule\Manager as Capsule;
-use Illuminate\Database\Schema\Blueprint;
+use Novalites\Database\Schema\Blueprint;
+use Novalites\Database\Schema\Schema;
 
 return new class
 {
     public function up(): void
     {
-        Capsule::schema()->create('user', function (Blueprint $table) {
-            $table->ulid('id')->primary();
+        Schema::create('user', function (Blueprint $table) {
+            $table->id('id');
             $table->string('name');
             $table->string('email');
             $table->string('password');
@@ -19,6 +19,6 @@ return new class
 
     public function down(): void
     {
-        Capsule::schema()->dropIfExists('user');
+        Schema::dropIfExists('user');
     }
 };

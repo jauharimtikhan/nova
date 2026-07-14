@@ -1,21 +1,23 @@
 <?php
 
-use Illuminate\Database\Capsule\Manager as Capsule;
-use Illuminate\Database\Schema\Blueprint;
+use Novalites\Database\Schema\Blueprint;
+use Novalites\Database\Schema\Schema;
 
 return new class
 {
     public function up(): void
     {
-        Capsule::schema()->create('cache', function (Blueprint $table) {
-            $table->string('key')->primary();
+        Schema::create('cache', function (Blueprint $table) {
+            $table->string('key');
             $table->longText('value');
             $table->integer('expiration');
+
+            $table->primaryColumn = 'key';
         });
     }
 
     public function down(): void
     {
-        Capsule::schema()->dropIfExists('cache');
+        Schema::dropIfExists('cache');
     }
 };

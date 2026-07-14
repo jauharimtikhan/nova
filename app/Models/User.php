@@ -6,22 +6,22 @@ use Novalites\Database\Model;
 
 class User extends Model
 {
-    protected   $table = 'user';
-    protected   $primaryKey = 'id';
-    public $timestamps = true;
+    protected string  $table = 'user';
+    protected  string $primaryKey = 'id';
+    public bool $timestamps = true;
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
     }
 
-    protected $fillable = [
+    protected array $fillable = [
         'name',
         'email',
         'password',
     ];
 
-    protected $hidden = [
+    protected array $hidden = [
         'password',
     ];
 }

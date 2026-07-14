@@ -16,12 +16,11 @@
     ],
      "scripts": {
         "post-install-cmd": [
-            "@php jtech migrate:fresh",
+            "@php jtech migrate",
             "@php jtech optimize:clear",
             "@php jtech key:generate --if-missing"
         ],
         "post-update-cmd": [
-            "@php jtech migrate:fresh",
             "@php jtech optimize:clear"
         ],
         "post-autoload-dump": [
@@ -31,6 +30,6 @@
         ]
     },
     "require": {
-        "jtech/novalites": "^0.0.5"
+        "jtech/novalites": "^0.0.6"
     }
 }

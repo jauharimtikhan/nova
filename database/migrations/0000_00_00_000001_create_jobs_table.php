@@ -1,34 +1,34 @@
 <?php
 
-use Illuminate\Database\Capsule\Manager as Capsule;
-use Illuminate\Database\Schema\Blueprint;
+use Novalites\Database\Schema\Blueprint;
+use Novalites\Database\Schema\Schema;
 
 return new class
 {
     public function up(): void
     {
-        Capsule::schema()->create('jobs', function (Blueprint $table) {
+        Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('queue')->default('default')->index();
             $table->longText('payload');
-            $table->unsignedTinyInteger('attempts')->default(0);
-            $table->unsignedInteger('reserved_at')->nullable();
-            $table->unsignedInteger('available_at');
-            $table->unsignedInteger('created_at');
+            $table->smallInteger('attempts')->default(0);
+            $table->integer('reserved_at')->nullable();
+            $table->integer('available_at');
+            $table->integer('created_at');
         });
 
-        Capsule::schema()->create('failed_jobs', function (Blueprint $table) {
+        Schema::create('failed_jobs', function (Blueprint $table) {
             $table->id();
             $table->string('queue');
             $table->longText('payload');
             $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+            $table->timestamp('failed_at')->nullable();
         });
     }
 
     public function down(): void
     {
-        Capsule::schema()->dropIfExists('jobs');
-        Capsule::schema()->dropIfExists('failed_jobs');
+        Schema::dropIfExists('jobs');
+        Schema::dropIfExists('failed_jobs');
     }
 };
